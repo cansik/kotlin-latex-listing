@@ -1,0 +1,103 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+ 
+\usepackage[dvipsnames]{xcolor}
+\usepackage{listings}
+
+\lstset{
+basicstyle=\scriptsize\sffamily\color{black},
+frame=single,
+numbers=left,
+numbersep=5pt,
+numberstyle=\tiny\color{gray},
+showspaces=false,
+showstringspaces=false,
+tabsize=1
+}
+
+\lstdefinelanguage{Kotlin}{
+  keywords={package, as, typealias, this, super, val, var, fun, for, null, true, false, is, in, throw, return, break, continue, object, if, try, else, while, do, when, yield, typeof, yield, typeof, class, interface, enum, object, override, public, private, get, set, import, abstract, },
+  keywordstyle=\color{NavyBlue}\bfseries,
+  ndkeywords={@Deprecated, Iterable, Int, Integer, Float, Double, String, Runnable, dynamic},
+  ndkeywordstyle=\color{BurntOrange}\bfseries,
+  emph={println, return@, forEach,},
+  emphstyle={\color{OrangeRed}},
+  identifierstyle=\color{black},
+  sensitive=true,
+  commentstyle=\color{gray}\ttfamily,
+  comment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  stringstyle=\color{ForestGreen}\ttfamily,
+  morestring=[b]",
+  morestring=[s]{"""*}{*"""},
+}
+
+\begin{document}
+
+\begin{lstlisting}[caption={Simple code listing.}, label={lst:example1}, language=Kotlin]
+// this is a simple code listing:
+println("hello kotlin from latex")
+\end{lstlisting}
+
+\begin{lstlisting}[caption={Example kotlin code.}, label={lst:example1}, language=Kotlin]
+/* Block comment */
+package hello
+import kotlin.collections.* // line comment
+
+/**
+ * Doc comment here for `SomeClass`
+ * @see Iterator#next()
+ */
+@Deprecated("Deprecated class")
+private class MyClass<out T : Iterable<T>>(var prop1 : Int) {
+    fun foo(nullable : String?, r : Runnable, f : () -> Int, 
+        fl : FunctionLike, dyn: dynamic) {
+        println("length\nis ${nullable?.length} \e")
+        val ints = java.util.ArrayList<Int?>(2)
+        ints[0] = 102 + f() + fl()
+        val myFun = { -> "" };
+        var ref = ints.size
+        ints.lastIndex + globalCounter
+        ints.forEach lit@ {
+            if (it == null) return@lit
+            println(it + ref)
+        }
+        dyn.dynamicCall()
+        dyn.dynamicProp = 5
+    }
+    
+    val test = """hello
+                  world
+                  kotlin"""
+
+    override fun hashCode(): Int {
+        return super.hashCode() * 31
+    }
+}
+
+fun Int?.bar() {
+    if (this != null) {
+        println(message = toString())
+    }
+    else {
+        println(this.toString())
+    }
+}
+
+var globalCounter : Int = 5
+    get = field
+
+abstract class Abstract {
+}
+
+object Obj
+
+enum class E { A, B }
+
+interface FunctionLike {
+    operator fun invoke() = 1
+}
+\end{lstlisting}
+
+\end{document}

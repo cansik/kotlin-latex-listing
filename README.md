@@ -1,2 +1,46 @@
-# latex-lst-kotlin
-Latex lst syntax highlighting template for the Kotlin language.
+# Kotlin for LaTeX Listings
+Currently, I am writing my bachelor thesis with [Kotlin](https://kotlinlang.org/) and need to document some code in [LaTeX](https://www.latex-project.org/). The [lstpackage](https://en.wikibooks.org/wiki/LaTeX/Source_Code_Listings) does not support kotlin syntax highlighting by default, so I decided to create a language template for it.
+
+![Example](readme/example.png)
+
+Check out this example of the default style or [download](example/kotlin_example.pdf) the whole document.
+
+Feel free to add more keywords or new styles!
+
+## How to use it?
+First of all you have to copy my language definition into your latex document:
+
+```latex
+\usepackage[dvipsnames]{xcolor}
+\usepackage{listings}
+
+\lstdefinelanguage{Kotlin}{
+  keywords={package, as, typealias, this, super, val, var, fun, for, null, true, false, is, in, throw, return, break, continue, object, if, try, else, while, do, when, yield, typeof, yield, typeof, class, interface, enum, object, override, public, private, get, set, import, abstract, },
+  keywordstyle=\color{NavyBlue}\bfseries,
+  ndkeywords={@Deprecated, Iterable, Int, Integer, Float, Double, String, Runnable, dynamic},
+  ndkeywordstyle=\color{BurntOrange}\bfseries,
+  emph={println, return@, forEach,},
+  emphstyle={\color{OrangeRed}},
+  identifierstyle=\color{black},
+  sensitive=true,
+  commentstyle=\color{gray}\ttfamily,
+  comment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  stringstyle=\color{ForestGreen}\ttfamily,
+  morestring=[b]",
+  morestring=[s]{"""*}{*"""},
+}
+```
+
+Then you have to set the language of your listing to `Kotlin`:
+
+```latex
+\begin{lstlisting}[caption={Simple code listing.}, label={lst:example1}, language=Kotlin]
+// this is a simple code listing:
+println("hello kotlin from latex")
+\end{lstlisting}
+```
+
+And finally your listing should look like this:
+![Simple Example](readme/simple.png)
+*(The border is not part of the language definition. Check out the [example.tex](example/kotlin_example) for this style.)*

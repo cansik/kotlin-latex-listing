@@ -8,7 +8,7 @@ Check out this example of the default style or [download](example/kotlin_exampl
 Feel free to add more keywords or new styles!
 
 ## How to use it?
-First of all you have to copy my language definition into your latex document:
+First of all you have to copy the language definition into your latex document:
 
 ```latex
 \usepackage[dvipsnames]{xcolor}
@@ -43,4 +43,4 @@ println("hello kotlin from latex")
 
 And finally your listing should look like this:
 ![Simple Example](readme/simple.png)
-*(The border is not part of the language definition. Check out the [example.tex](example/kotlin_example) for this style.)*
+*(The border is not part of the language definition. Check out the [example.tex](example/kotlin_example.tex) for this style.)*

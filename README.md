@@ -15,7 +15,7 @@ First of all you have to copy the language definition into your latex document:
 \usepackage{listings}
 
 \lstdefinelanguage{Kotlin}{
-  keywords={package, as, as?, typealias, this, super, val, var, fun, for, null, true, false, is, in, throw, return, break, continue, object, if, try, else, while, do, when, class, interface, enum, object, companion, override, public, private, get, set, import, abstract, vararg, expect, actual, where},
+  keywords={package, as, as?, typealias, this, super, val, var, fun, for, null, true, false, is, in, throw, return, break, continue, object, if, try, else, while, do, when, class, interface, enum, object, companion, override, public, private, get, set, import, abstract, vararg, expect, actual, where, suspend, data, internal},
   keywordstyle=\color{NavyBlue}\bfseries,
   ndkeywords={@Deprecated, @JvmName, @JvmStatic, @JvmOverloads, @JvmField, @JvmSynthetic, Iterable, Int, Long, Integer, Short, Byte, Float, Double, String, Runnable, Array, dynamic},
   ndkeywordstyle=\color{BurntOrange}\bfseries,

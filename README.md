@@ -15,20 +15,20 @@ First of all you have to copy the language definition into your latex document:
 \usepackage{listings}
 
 \lstdefinelanguage{Kotlin}{
-  keywords={package, as, as?, typealias, this, super, val, var, fun, for, null, true, false, is, in, throw, return, break, continue, object, if, try, else, while, do, when, class, interface, enum, object, companion, override, public, private, get, set, import, abstract, vararg, expect, actual, where, suspend, data, internal, dynamic, final, by},
-  keywordstyle=\color{NavyBlue}\bfseries,
-  ndkeywords={@Deprecated, @JvmName, @JvmStatic, @JvmOverloads, @JvmField, @JvmSynthetic, Iterable, Int, Long, Integer, Short, Byte, Float, Double, String, Runnable, Array},
-  ndkeywordstyle=\color{BurntOrange}\bfseries,
-  emph={println, return@, forEach, map, mapNotNull, first, filter, firstOrNull, lazy, delegate},
+  comment=[l]{//},
+  commentstyle={\color{gray}\ttfamily},
+  emph={delegate, filter, first, firstOrNull, forEach, lazy, map, mapNotNull, println, return@},
   emphstyle={\color{OrangeRed}},
   identifierstyle=\color{black},
-  sensitive=true,
-  commentstyle=\color{gray}\ttfamily,
-  comment=[l]{//},
+  keywords={abstract, actual, as, as?, break, by, class, companion, continue, data, do, dynamic, else, enum, expect, false, final, for, fun, get, if, import, in, interface, internal, is, null, object, override, package, private, public, return, set, super, suspend, this, throw, true, try, typealias, val, var, vararg, when, where, while},
+  keywordstyle={\color{NavyBlue}\bfseries},
   morecomment=[s]{/*}{*/},
-  stringstyle=\color{ForestGreen}\ttfamily,
   morestring=[b]",
   morestring=[s]{"""*}{*"""},
+  ndkeywords={@Deprecated, @JvmField, @JvmName, @JvmOverloads, @JvmStatic, @JvmSynthetic, Array, Byte, Double, Float, Int, Integer, Iterable, Long, Runnable, Short, String},
+  ndkeywordstyle={\color{BurntOrange}\bfseries},
+  sensitive=true,
+  stringstyle={\color{ForestGreen}\ttfamily},
 }
 ```
 
@@ -48,4 +48,4 @@ And finally your listing should look like this:
 ### Contributors
 Feel free to add new or missing keywords and style enhancements. Just create a pull request.
 
-Thanks to [@ice1000](https://github.com/ice1000)
+Thanks to [@ppizarror](https://github.com/ppizarror), [@ice1000](https://github.com/ice1000)

@@ -1,7 +1,7 @@
 # Kotlin for LaTeX Listings
 Currently, I am writing my bachelor thesis with [Kotlin](https://kotlinlang.org/) and need to document some code in [LaTeX](https://www.latex-project.org/). The [lstpackage](https://en.wikibooks.org/wiki/LaTeX/Source_Code_Listings) does not support kotlin syntax highlighting by default, so I decided to create a language template for it.
 
-![Example](readme/example.jpg)
+![Example](readme/example.png)
 
 Check out this example of the default style or [download](example/kotlin_example.pdf) the whole document.
 

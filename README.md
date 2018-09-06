@@ -48,4 +48,4 @@ And finally your listing should look like this:
 ### Contributors
 Feel free to add new or missing keywords and style enhancements. Just create a pull request.
 
-Thanks to [@ppizarror]{https://github.com/ppizarror}, [@ice1000](https://github.com/ice1000)
+Thanks to [@ppizarror](https://github.com/ppizarror), [@ice1000](https://github.com/ice1000)

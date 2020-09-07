@@ -1,6 +1,11 @@
 \documentclass{article}
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
+\usepackage{geometry}
+\geometry{
+	top = 20mm,
+	right = 8cm,
+}
  
 \usepackage[dvipsnames]{xcolor}
 \usepackage{listings}
@@ -16,91 +21,13 @@ showstringspaces=false,
 tabsize=1
 }
 
-\usepackage[dvipsnames]{xcolor}
-\usepackage{listings}
-
-\lstdefinelanguage{Kotlin}{
-  comment=[l]{//},
-  commentstyle={\color{gray}\ttfamily},
-  emph={delegate, filter, first, firstOrNull, forEach, lazy, map, mapNotNull, println, return@},
-  emphstyle={\color{OrangeRed}},
-  identifierstyle=\color{black},
-  keywords={abstract, actual, as, as?, break, by, class, companion, continue, data, do, dynamic, else, enum, expect, false, final, for, fun, get, if, import, in, interface, internal, is, null, object, override, package, private, public, return, set, super, suspend, this, throw, true, try, typealias, val, var, vararg, when, where, while},
-  keywordstyle={\color{NavyBlue}\bfseries},
-  morecomment=[s]{/*}{*/},
-  morestring=[b]",
-  morestring=[s]{"""*}{*"""},
-  ndkeywords={@Deprecated, @JvmField, @JvmName, @JvmOverloads, @JvmStatic, @JvmSynthetic, Array, Byte, Double, Float, Int, Integer, Iterable, Long, Runnable, Short, String},
-  ndkeywordstyle={\color{BurntOrange}\bfseries},
-  sensitive=true,
-  stringstyle={\color{ForestGreen}\ttfamily},
-}
+\input{kotlin_def.tex}
 
 \begin{document}
 
-\begin{lstlisting}[caption={Simple code listing.}, label={lst:example1}, language=Kotlin]
-// this is a simple code listing:
-println("hello kotlin from latex")
-\end{lstlisting}
+\lstinputlisting[caption={Simple code listing.}, label={lst:example1}, language=Kotlin]{Simple.kt}
+\newpage
+\lstinputlisting[caption={Example kotlin code.}, label={lst:example2}, language=Kotlin]{Complex.kt}
 
-\begin{lstlisting}[caption={Example kotlin code.}, label={lst:example2}, language=Kotlin]
-/* Block comment */
-package hello
-import kotlin.collections.* // line comment
-
-/**
- * Doc comment here for `SomeClass`
- * @see Iterator#next()
- */
-@Deprecated("Deprecated class")
-private class MyClass<out T : Iterable<T>>(var prop1 : Int) {
-    fun foo(nullable : String?, r : Runnable, f : () -> Int, 
-        fl : FunctionLike, dyn: dynamic) {
-        println("length\nis ${nullable?.length} \e")
-        val ints = java.util.ArrayList<Int?>(2)
-        ints[0] = 102 + f() + fl()
-        val myFun = { -> "" };
-        var ref = ints.size
-        ints.lastIndex + globalCounter
-        ints.forEach lit@ {
-            if (it == null) return@lit
-            println(it + ref)
-        }
-        dyn.dynamicCall()
-        dyn.dynamicProp = 5
-    }
-    
-    val test = """hello
-                  world
-                  kotlin"""
-
-    override fun hashCode(): Int {
-        return super.hashCode() * 31
-    }
-}
-
-fun Int?.bar() {
-    if (this != null) {
-        println(message = toString())
-    }
-    else {
-        println(this.toString())
-    }
-}
-
-var globalCounter : Int = 5
-    get = field
-
-abstract class Abstract {
-}
-
-object Obj
-
-enum class E { A, B }
-
-interface FunctionLike {
-    operator fun invoke() = 1
-}
-\end{lstlisting}
 
 \end{document}

@@ -17,10 +17,10 @@ First of all you have to copy the language definition into your latex document:
 \lstdefinelanguage{Kotlin}{
   comment=[l]{//},
   commentstyle={\color{gray}\ttfamily},
-  emph={delegate, filter, first, firstOrNull, forEach, lazy, map, mapNotNull, println, return@},
+  emph={filter, first, firstOrNull, forEach, lazy, map, mapNotNull, println},
   emphstyle={\color{OrangeRed}},
   identifierstyle=\color{black},
-  keywords={abstract, actual, as, as?, break, by, class, companion, continue, data, do, dynamic, else, enum, expect, false, final, for, fun, get, if, import, in, interface, internal, is, null, object, override, package, private, public, return, set, super, suspend, this, throw, true, try, typealias, val, var, vararg, when, where, while},
+  keywords={!in, !is, abstract, actual, annotation, as, as?, break, by, catch, class, companion, const, constructor, continue, crossinline, data, delegate, do, dynamic, else, enum, expect, external, false, field, file, final, finally, for, fun, get, if, import, in, infix, init, inline, inner, interface, internal, is, lateinit, noinline, null, object, open, operator, out, override, package, param, private, property, protected, public, receiveris, reified, return, return@, sealed, set, setparam, super, suspend, tailrec, this, throw, true, try, typealias, typeof, val, var, vararg, when, where, while},
   keywordstyle={\color{NavyBlue}\bfseries},
   morecomment=[s]{/*}{*/},
   morestring=[b]",

@@ -42,7 +42,8 @@ println("hello kotlin from latex")
 ```
 
 And finally your listing should look like this:
-![Simple Example](readme/simple.png)
+![Simple Example](readme/simple.png)  
+  
 *(The border is not part of the language definition. Check out the [example.tex](example/kotlin_example.tex) for this style.)*
 
 ### Contributors

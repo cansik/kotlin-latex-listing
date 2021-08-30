@@ -25,7 +25,7 @@ First of all you have to copy the language definition into your latex document:
   morecomment=[s]{/*}{*/},
   morestring=[b]",
   morestring=[s]{"""*}{*"""},
-  ndkeywords={@Deprecated, @JvmField, @JvmName, @JvmOverloads, @JvmStatic, @JvmSynthetic, Array, Byte, Double, Float, Int, Integer, Iterable, Long, Runnable, Short, String},
+  ndkeywords={@Deprecated, @JvmField, @JvmName, @JvmOverloads, @JvmStatic, @JvmSynthetic, Array, Byte, Double, Float, Int, Integer, Iterable, Long, Runnable, Short, String, Any},
   ndkeywordstyle={\color{BurntOrange}\bfseries},
   sensitive=true,
   stringstyle={\color{ForestGreen}\ttfamily},
@@ -42,7 +42,7 @@ println("hello kotlin from latex")
 ```
 
 And finally your listing should look like this:
-![Simple Example](readme/simple.png)  
+![Simple Example](readme/simple.png)
 *(The border is not part of the language definition. Check out the [example.tex](example/kotlin_example.tex) for this style.)*
 
 ### Contributors

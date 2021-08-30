@@ -20,11 +20,6 @@ jobs:
         with:
           path: "${{ env.repo_dir }}"
 
-      - name: Switch to repository
-        run: |
-          cd "${{ env.repo_dir }}/example"
-          ls -la
-
       - name: Compile LaTeX documents
         uses: xu-cheng/latex-action@v2
         with:
@@ -36,14 +31,17 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: Examples
-          path: "${{ env.repo_dir }}/example/${{ env.example_file }}.pdf"
+          path: |
+            "${{ env.repo_dir }}/example/*.pdf"
+            "${{ env.repo_dir }}/readme/*.png"
 
       - name: Convert to PDF to PNG
         run: |
           sudo apt install poppler-utils
-          pdftoppm -png "${{ env.repo_dir }}/example/${{ env.example_file }}.pdf" "example"
-          mv -f "example-01.png" "../readme/simple.png"
-          mv -f "example-02.png" "../readme/example.png"
+          pdftoppm -cropbox -png "${{ env.repo_dir }}/example/${{ env.example_file }}.pdf" "example"
+          ls -la "${{ env.repo_dir }}/example/"
+          mv -f "${{ env.repo_dir }}/example/example-01.png" "${{ env.repo_dir }}/readme/simple.png"
+          mv -f "${{ env.repo_dir }}/example/example-02.png" "${{ env.repo_dir }}/readme/example.png"
 
       # upload dist
       - name: Upload binaries to release

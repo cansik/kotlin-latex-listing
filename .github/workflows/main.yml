@@ -1,0 +1,64 @@
+name: Build LaTeX examples
+
+env:
+  repo_dir: "koltin-latex"
+  example_file: "kotlin_example"
+
+on:
+  push:
+    paths:
+      - "**/*.tex"
+  workflow_dispatch:
+
+jobs:
+  build_latex:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Set up Git repository
+        uses: actions/checkout@v2
+        with:
+          path: "${{ env.repo_dir }}"
+
+      - name: Compile LaTeX documents
+        uses: xu-cheng/latex-action@v2
+        with:
+          working_directory: "${{ env.repo_dir }}/example"
+          root_file: "${{ env.example_file }}.tex"
+
+      - name: Convert to PDF to PNG
+        run: |
+          sudo apt install poppler-utils
+          echo "running pdf to ppm..."
+          pdftoppm -png "${{ env.repo_dir }}/example/${{ env.example_file }}.pdf" "${{ env.repo_dir }}/example/example"
+          ls -la "${{ env.repo_dir }}/example/"
+          mv -f "${{ env.repo_dir }}/example/example-1.png" "${{ env.repo_dir }}/readme/simple.png"
+          mv -f "${{ env.repo_dir }}/example/example-2.png" "${{ env.repo_dir }}/readme/example.png"
+
+      - name: Copy files to build
+        run: |
+          cd "${{ env.repo_dir }}"
+          mkdir build
+          cp -f "example/${{ env.example_file }}.pdf" "build/${{ env.example_file }}.pdf"
+          cp -f "readme/simple.png" "build/simple.png"
+          cp -f "readme/example.png" "build/example.png"
+          ls -la build
+
+      # upload workflow
+      - name: Upload LaTeX documents
+        uses: actions/upload-artifact@v2
+        with:
+          name: Examples
+          path: "${{ env.repo_dir }}/build/*"
+
+      # upload dist
+      - name: Upload build to release
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: "${{ env.repo_dir }}/build/*"
+          tag: "example"
+          release_name: "Example"
+          body: "Example pdf of the current commit."
+          overwrite: true
+          file_glob: true

@@ -26,6 +26,15 @@ jobs:
           working_directory: "${{ env.repo_dir }}/example"
           root_file: "${{ env.example_file }}.tex"
 
+      - name: Convert to PDF to PNG
+        run: |
+          sudo apt install poppler-utils
+          echo "running pdf to ppm..."
+          pdftoppm -cropbox -png "${{ env.repo_dir }}/example/${{ env.example_file }}.pdf" "${{ env.repo_dir }}/example/example"
+          ls -la "${{ env.repo_dir }}/example/"
+          mv -f "${{ env.repo_dir }}/example/example-1.png" "${{ env.repo_dir }}/readme/simple.png"
+          mv -f "${{ env.repo_dir }}/example/example-2.png" "${{ env.repo_dir }}/readme/example.png"
+
       # upload workflow
       - name: Upload LaTeX documents
         uses: actions/upload-artifact@v2
@@ -34,14 +43,6 @@ jobs:
           path: |
             "${{ env.repo_dir }}/example/*.pdf"
             "${{ env.repo_dir }}/readme/*.png"
-
-      - name: Convert to PDF to PNG
-        run: |
-          sudo apt install poppler-utils
-          pdftoppm -cropbox -png "${{ env.repo_dir }}/example/${{ env.example_file }}.pdf" "${{ env.repo_dir }}/example/example"
-          ls -la "${{ env.repo_dir }}/example/"
-          mv -f "${{ env.repo_dir }}/example/example-01.png" "${{ env.repo_dir }}/readme/simple.png"
-          mv -f "${{ env.repo_dir }}/example/example-02.png" "${{ env.repo_dir }}/readme/example.png"
 
       # upload dist
       - name: Upload build to release

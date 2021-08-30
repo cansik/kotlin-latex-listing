@@ -32,23 +32,23 @@ jobs:
           echo "running pdf to ppm..."
           pdftoppm -png -rx 300 -ry 300 "${{ env.repo_dir }}/example/${{ env.example_file }}.pdf" "${{ env.repo_dir }}/example/example"
           ls -la "${{ env.repo_dir }}/example/"
-          mv -f "${{ env.repo_dir }}/example/example-1.png" "${{ env.repo_dir }}/readme/simple.png"
-          mv -f "${{ env.repo_dir }}/example/example-2.png" "${{ env.repo_dir }}/readme/example.png"
+          mv -f "${{ env.repo_dir }}/example/example-1.png" "${{ env.repo_dir }}/example/simple.png"
+          mv -f "${{ env.repo_dir }}/example/example-2.png" "${{ env.repo_dir }}/example/example.png"
 
       - name: Crop Images to content
         run: |
           cd "${{ env.repo_dir }}"
           sudo apt install imagemagick
-          convert "readme/simple.png" -trim -bordercolor white -border 50 "readme/simple.png"
-          convert "readme/example.png" -trim -bordercolor white -border 50 "readme/example.png"
+          convert "example/simple.png" -trim -bordercolor white -border 50 "example/simple.png"
+          convert "example/example.png" -trim -bordercolor white -border 50 "example/example.png"
 
       - name: Copy files to build
         run: |
           cd "${{ env.repo_dir }}"
           mkdir build
           cp -f "example/${{ env.example_file }}.pdf" "build/${{ env.example_file }}.pdf"
-          cp -f "readme/simple.png" "build/simple.png"
-          cp -f "readme/example.png" "build/example.png"
+          cp -f "example/simple.png" "build/simple.png"
+          cp -f "example/example.png" "build/example.png"
           ls -la build
 
       # upload workflow

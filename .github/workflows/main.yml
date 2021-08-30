@@ -1,5 +1,8 @@
 name: Build LaTeX examples
 on:
+  push:
+    paths:
+      - "*.tex"
   workflow_dispatch:
 
 jobs:
@@ -13,12 +16,10 @@ jobs:
       - name: Compile LaTeX documents
         uses: xu-cheng/latex-action@v2
         with:
-          root_file: |
-            "example/Complex.kt"
-            "example/Simple.kt"
+          root_file: "$GITHUB_WORKSPACE/example/kotlin_example.tex"
 
       - name: Upload LaTeX documents
         uses: actions/upload-artifact@v2
         with:
           name: Examples
-          path: "example/*.pdf"
+          path: "$GITHUB_WORKSPACE/example/kotlin_example.pdf"

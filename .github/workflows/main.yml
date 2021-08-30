@@ -35,22 +35,29 @@ jobs:
           mv -f "${{ env.repo_dir }}/example/example-1.png" "${{ env.repo_dir }}/readme/simple.png"
           mv -f "${{ env.repo_dir }}/example/example-2.png" "${{ env.repo_dir }}/readme/example.png"
 
+      - name: Copy files to build
+        run: |
+          cd "${{ env.repo_dir }}"
+          mkdir build
+          cp -f "example/${{ env.example_file }}.pdf" "build/${{ env.example_file }}.pdf"
+          cp -f "readme/simple.png" "build/simple.png"
+          cp -f "readme/example.png" "build/example.png"
+          ls -la build
+
       # upload workflow
       - name: Upload LaTeX documents
         uses: actions/upload-artifact@v2
         with:
           name: Examples
-          path: |
-            "${{ env.repo_dir }}/example/*.pdf"
-            "${{ env.repo_dir }}/readme/*.png"
+          path: "${{ env.repo_dir }}/build/*"
 
       # upload dist
       - name: Upload build to release
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: "${{ env.repo_dir }}/example/${{ env.example_file }}.pdf"
-          tag: ${{ env.tag }}
+          file: "${{ env.repo_dir }}/build/*"
+          tag: "example"
           release_name: "Example"
           body: "Example pdf of the current commit."
           overwrite: true

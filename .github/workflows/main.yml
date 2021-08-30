@@ -27,6 +27,7 @@ jobs:
       - name: Compile LaTeX documents
         uses: xu-cheng/latex-action@v2
         with:
+          working_directory: $GITHUB_WORKSPACE/example
           root_file: "${{ env.example_file }}.tex"
 
       # upload workflow
@@ -35,6 +36,13 @@ jobs:
         with:
           name: Examples
           path: "${{ env.example_file }}.pdf"
+
+      - name: Convert to PDF to PNG
+        run: |
+          sudo apt install poppler-utils
+          pdftoppm -png "${{ env.example_file }}.pdf" "example"
+          mv -f "example-01.png" "../readme/simple.png"
+          mv -f "example-02.png" "../readme/example.png"
 
       # upload dist
       - name: Upload binaries to release

@@ -35,6 +35,13 @@ jobs:
           mv -f "${{ env.repo_dir }}/example/example-1.png" "${{ env.repo_dir }}/readme/simple.png"
           mv -f "${{ env.repo_dir }}/example/example-2.png" "${{ env.repo_dir }}/readme/example.png"
 
+      - name: Crop Images to content
+        run: |
+          cd "${{ env.repo_dir }}"
+          sudo apt install imagemagick
+          convert "readme/simple.png" -trim "readme/simple.png"
+          convert "readme/example.png" -trim "readme/example.png"
+
       - name: Copy files to build
         run: |
           cd "${{ env.repo_dir }}"

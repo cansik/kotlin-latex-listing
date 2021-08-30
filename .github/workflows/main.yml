@@ -1,7 +1,7 @@
 name: Build LaTeX examples
 
 env:
-  example_file: "example/kotlin_example"
+  example_file: "kotlin_example"
 
 on:
   push:
@@ -21,6 +21,7 @@ jobs:
         run: |
           echo $GITHUB_WORKSPACE
           cd $GITHUB_WORKSPACE
+          cd "example"
           ls -la
 
       - name: Compile LaTeX documents

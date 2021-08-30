@@ -38,13 +38,13 @@ jobs:
       - name: Convert to PDF to PNG
         run: |
           sudo apt install poppler-utils
-          pdftoppm -cropbox -png "${{ env.repo_dir }}/example/${{ env.example_file }}.pdf" "example"
+          pdftoppm -cropbox -png "${{ env.repo_dir }}/example/${{ env.example_file }}.pdf" "${{ env.repo_dir }}/example/example"
           ls -la "${{ env.repo_dir }}/example/"
           mv -f "${{ env.repo_dir }}/example/example-01.png" "${{ env.repo_dir }}/readme/simple.png"
           mv -f "${{ env.repo_dir }}/example/example-02.png" "${{ env.repo_dir }}/readme/example.png"
 
       # upload dist
-      - name: Upload binaries to release
+      - name: Upload build to release
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}

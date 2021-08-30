@@ -36,12 +36,12 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: Examples
-          path: "${{ env.example_file }}.pdf"
+          path: "${{ env.repo_dir }}/example/${{ env.example_file }}.pdf"
 
       - name: Convert to PDF to PNG
         run: |
           sudo apt install poppler-utils
-          pdftoppm -png "${{ env.example_file }}.pdf" "example"
+          pdftoppm -png "${{ env.repo_dir }}/example/${{ env.example_file }}.pdf" "example"
           mv -f "example-01.png" "../readme/simple.png"
           mv -f "example-02.png" "../readme/example.png"
 
@@ -50,7 +50,7 @@ jobs:
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: "${{ env.example_file }}.pdf"
+          file: "${{ env.repo_dir }}/example/${{ env.example_file }}.pdf"
           tag: ${{ env.tag }}
           release_name: "Example"
           body: "Example pdf of the current commit."

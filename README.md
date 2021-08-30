@@ -1,4 +1,4 @@
-# Kotlin for LaTeX Listings [![Build LaTeX examples](https://github.com/cansik/kotlin-latex-listing/actions/workflows/main.yml/badge.svg)](https://github.com/cansik/kotlin-latex-listing/actions/workflows/main.yml)
+# Kotlin for LaTeX Listings [![Build LaTeX](https://github.com/cansik/kotlin-latex-listing/actions/workflows/main.yml/badge.svg)](https://github.com/cansik/kotlin-latex-listing/actions/workflows/main.yml)
 Currently, I am writing my bachelor thesis with [Kotlin](https://kotlinlang.org/) and need to document some code in [LaTeX](https://www.latex-project.org/). The [lstpackage](https://en.wikibooks.org/wiki/LaTeX/Source_Code_Listings) does not support kotlin syntax highlighting by default, so I decided to create a language template for it.
 
 ![Example](https://github.com/cansik/kotlin-latex-listing/releases/download/example/example.png)

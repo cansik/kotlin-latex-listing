@@ -1,6 +1,7 @@
 name: Build LaTeX examples
 
 env:
+  repo_dir: "koltin-latex"
   example_file: "kotlin_example"
 
 on:
@@ -16,18 +17,18 @@ jobs:
     steps:
       - name: Set up Git repository
         uses: actions/checkout@v2
+        with:
+          path: "${{ env.repo_dir }}"
 
       - name: Switch to repository
         run: |
-          echo $GITHUB_WORKSPACE
-          cd $GITHUB_WORKSPACE
-          cd "example"
+          cd "${{ env.repo_dir }}/example"
           ls -la
 
       - name: Compile LaTeX documents
         uses: xu-cheng/latex-action@v2
         with:
-          working_directory: $GITHUB_WORKSPACE/example
+          working_directory: "${{ env.repo_dir }}/example"
           root_file: "${{ env.example_file }}.tex"
 
       # upload workflow

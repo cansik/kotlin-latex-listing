@@ -1,8 +1,12 @@
 name: Build LaTeX examples
+
+env:
+  example_file: "example/kotlin_example"
+
 on:
   push:
     paths:
-      - "*.tex"
+      - "**/*.tex"
   workflow_dispatch:
 
 jobs:
@@ -13,13 +17,32 @@ jobs:
       - name: Set up Git repository
         uses: actions/checkout@v2
 
+      - name: Switch to repository
+        run: |
+          echo $GITHUB_WORKSPACE
+          cd $GITHUB_WORKSPACE
+          ls -la
+
       - name: Compile LaTeX documents
         uses: xu-cheng/latex-action@v2
         with:
-          root_file: "$GITHUB_WORKSPACE/example/kotlin_example.tex"
+          root_file: "${{ env.example_file }}.tex"
 
+      # upload workflow
       - name: Upload LaTeX documents
         uses: actions/upload-artifact@v2
         with:
           name: Examples
-          path: "$GITHUB_WORKSPACE/example/kotlin_example.pdf"
+          path: "${{ env.example_file }}.pdf"
+
+      # upload dist
+      - name: Upload binaries to release
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: "${{ env.example_file }}.pdf"
+          tag: ${{ env.tag }}
+          release_name: "Example"
+          body: "Example pdf of the current commit."
+          overwrite: true
+          file_glob: true

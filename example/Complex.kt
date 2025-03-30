@@ -66,3 +66,12 @@ open class Bar {
 inline fun <reified T: Any> doStuff() = T::class
 
 const val NUMBER = 42
+
+/**
+* //(`\LaTeX`) in kotlin in LaTeX
+*/
+@Preview
+@Composable
+fun ButtonPreview = Column {
+    val x = 1 //(`$-e^{i\pi}$`)
+}

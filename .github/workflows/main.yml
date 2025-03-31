@@ -28,6 +28,7 @@ jobs:
 
       - name: Convert to PDF to PNG
         run: |
+          sudo apt-get update
           sudo apt-get -y install poppler-utils
           echo "running pdf to ppm..."
           pdftoppm -png -rx 300 -ry 300 "${{ env.repo_dir }}/example/${{ env.example_file }}.pdf" "${{ env.repo_dir }}/example/example"

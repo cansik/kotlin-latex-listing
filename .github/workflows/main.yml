@@ -28,7 +28,7 @@ jobs:
 
       - name: Convert to PDF to PNG
         run: |
-          sudo apt-get -y poppler-utils
+          sudo apt-get -y install poppler-utils
           echo "running pdf to ppm..."
           pdftoppm -png -rx 300 -ry 300 "${{ env.repo_dir }}/example/${{ env.example_file }}.pdf" "${{ env.repo_dir }}/example/example"
           ls -la "${{ env.repo_dir }}/example/"
@@ -38,7 +38,7 @@ jobs:
       - name: Crop Images to content
         run: |
           cd "${{ env.repo_dir }}"
-          sudo apt-get -y imagemagick
+          sudo apt-get -y install imagemagick
           convert "example/simple.png" -trim -bordercolor white -border 50 "example/simple.png"
           convert "example/example.png" -trim -bordercolor white -border 50 "example/example.png"
 

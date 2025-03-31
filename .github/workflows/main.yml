@@ -39,8 +39,8 @@ jobs:
         run: |
           cd "${{ env.repo_dir }}"
           sudo apt-get -y install imagemagick
-          convert "example/simple.png" -trim -bordercolor white -border 50 "example/simple.png"
-          convert "example/example.png" -trim -bordercolor white -border 50 "example/example.png"
+          magick "example/simple.png" -trim -bordercolor white -border 50 "example/simple.png"
+          magick "example/example.png" -trim -bordercolor white -border 50 "example/example.png"
 
       - name: Copy files to build
         run: |

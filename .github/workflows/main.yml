@@ -16,19 +16,20 @@ jobs:
 
     steps:
       - name: Set up Git repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           path: "${{ env.repo_dir }}"
 
       - name: Compile LaTeX documents
-        uses: xu-cheng/latex-action@v2
+        uses: xu-cheng/latex-action@v3
         with:
           working_directory: "${{ env.repo_dir }}/example"
           root_file: "${{ env.example_file }}.tex"
 
       - name: Convert to PDF to PNG
         run: |
-          sudo apt install poppler-utils
+          sudo apt-get update
+          sudo apt-get -y install poppler-utils
           echo "running pdf to ppm..."
           pdftoppm -png -rx 300 -ry 300 "${{ env.repo_dir }}/example/${{ env.example_file }}.pdf" "${{ env.repo_dir }}/example/example"
           ls -la "${{ env.repo_dir }}/example/"
@@ -38,7 +39,7 @@ jobs:
       - name: Crop Images to content
         run: |
           cd "${{ env.repo_dir }}"
-          sudo apt install imagemagick
+          sudo apt-get -y install imagemagick
           convert "example/simple.png" -trim -bordercolor white -border 50 "example/simple.png"
           convert "example/example.png" -trim -bordercolor white -border 50 "example/example.png"
 
